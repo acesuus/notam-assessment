@@ -55,43 +55,35 @@ export default async function DashboardLayout({
         </Link>
 
         {/* Right side */}
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ fontSize: "13px", fontWeight: 500, color: "var(--text-secondary)" }}>
-            {user.user_metadata?.name || user.email?.split("@")[0]}
-          </span>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <ThemeToggle />
 
-          <div style={{ width: "1px", height: "14px", background: "var(--border)" }} />
-
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <ThemeToggle />
-
-            <form action="/auth/signout" method="post" style={{ display: "flex" }}>
-              <button
-                className="dashboard-subtle-btn"
-                style={{
-                  fontSize: "12px",
-                  color: "var(--text-muted)",
-                  background: "var(--surface)",
-                  border: "1px solid var(--border)",
-                  borderRadius: "6px",
-                  padding: "0 12px",
-                  cursor: "pointer",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  fontWeight: 500,
-                  height: "28px",
-                }}
-              >
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                  <polyline points="16 17 21 12 16 7"></polyline>
-                  <line x1="21" y1="12" x2="9" y2="12"></line>
-                </svg>
-                Sign Out
-              </button>
-            </form>
-          </div>
+          <form action="/auth/signout" method="post" style={{ display: "flex" }}>
+            <button
+              type="submit"
+              className="dashboard-subtle-btn"
+              title="Sign out"
+              style={{
+                color: "var(--text-muted)",
+                background: "var(--surface)",
+                border: "1px solid var(--border)",
+                borderRadius: "6px",
+                padding: "0",
+                width: "28px",
+                height: "28px",
+                cursor: "pointer",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+            </button>
+          </form>
         </div>
       </header>
 

@@ -37,7 +37,7 @@ export default async function DashboardPage() {
   function getClassificationColor(classification: string) {
     if (classification === "Precise") return "var(--success)";
     if (classification === "Acceptable") return "var(--warning)";
-    return "var(--error)";
+    return "var(--danger)";
   }
 
   return (
@@ -49,25 +49,20 @@ export default async function DashboardPage() {
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        gap: "40px",
+        gap: "16px",
       }}
     >
-      {/* Welcome Section */}
       <div>
         <h1
           style={{
-            fontSize: "24px",
+            fontSize: "26px",
             fontWeight: 700,
             letterSpacing: "-0.02em",
             color: "var(--text-primary)",
-            marginBottom: "6px",
           }}
         >
-          Overview
+          Welcome, <span style={{ color: "var(--accent)" }}>{user.user_metadata?.name || user.email?.split("@")[0]}</span>
         </h1>
-        <p style={{ fontSize: "14px", color: "var(--text-muted)" }}>
-          Welcome back, <span style={{ color: "var(--text-primary)", fontWeight: 500 }}>{user.user_metadata?.name || user.email?.split("@")[0]}</span>
-        </p>
       </div>
 
       {/* Stats & Actions */}

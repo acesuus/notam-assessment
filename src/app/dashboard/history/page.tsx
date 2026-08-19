@@ -31,7 +31,7 @@ export default async function HistoryPage() {
   function getClassificationColor(classification: string) {
     if (classification === "Precise") return "var(--success)";
     if (classification === "Acceptable") return "var(--warning)";
-    return "var(--error)";
+    return "var(--danger)";
   }
 
   return (
