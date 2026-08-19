@@ -152,7 +152,7 @@ export default function AssessmentsPage() {
                 width: "100%",
                 padding: "9px",
                 background: "var(--accent)",
-                color: "white",
+                color: "var(--accent-fg)",
                 border: "none",
                 borderRadius: "7px",
                 fontWeight: 500,

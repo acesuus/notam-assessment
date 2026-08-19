@@ -130,7 +130,7 @@ export default async function ForgotPasswordPage({
                 width: "100%",
                 padding: "10px",
                 background: "var(--accent)",
-                color: "white",
+                color: "var(--accent-fg)",
                 border: "none",
                 borderRadius: "8px",
                 fontWeight: 500,
