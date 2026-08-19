@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
-import { getClassificationColor } from "@/utils/scoring";
 import CircularProgress from "@/components/CircularProgress";
 
 type AssessmentHistory = {
