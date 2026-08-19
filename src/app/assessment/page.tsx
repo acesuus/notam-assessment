@@ -65,7 +65,7 @@ export default function AssessmentPage() {
   function getClassificationColor(classification: string) {
     if (classification === "Precise") return "var(--success)";
     if (classification === "Acceptable") return "var(--warning)";
-    return "var(--error)";
+    return "var(--danger)";
   }
 
   async function handleSubmit(e: React.FormEvent) {
