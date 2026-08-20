@@ -64,7 +64,7 @@ export default async function DashboardLayout({
               className="dashboard-subtle-btn"
               title="Sign out"
               style={{
-                color: "var(--text-muted)",
+                color: "var(--text-primary)",
                 background: "var(--surface)",
                 border: "1px solid var(--border)",
                 borderRadius: "6px",

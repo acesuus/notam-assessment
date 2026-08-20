@@ -36,7 +36,7 @@ export default function ThemeToggle() {
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "var(--text-muted)",
+        color: "var(--text-primary)",
       }}
     >
       {theme === "dark" ? (
