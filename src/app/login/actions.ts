@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 
-export async function login(formData: FormData) {
+export async function login(prevState: { message: string } | null, formData: FormData) {
   const supabase = await createClient()
 
   const data = {
@@ -15,9 +15,15 @@ export async function login(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword(data)
 
   if (error) {
-    redirect('/login?message=Could not authenticate user')
+    if (error.message?.toLowerCase().includes('invalid')) {
+      return { message: 'Incorrect email or password. Please try again.' }
+    }
+    if (error.message?.toLowerCase().includes('email not confirmed')) {
+      return { message: 'Please verify your email before signing in.' }
+    }
+    return { message: 'Unable to sign in. Please try again shortly.' }
   }
 
   revalidatePath('/', 'layout')
-  redirect('/')
+  redirect('/dashboard')
 }

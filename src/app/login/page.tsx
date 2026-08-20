@@ -1,13 +1,83 @@
+"use client";
+
 import Link from "next/link";
 import { login } from "./actions";
 import PasswordInput from "@/components/PasswordInput";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 
-export default async function LoginPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ message: string }>;
-}) {
-  const params = await searchParams;
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      style={{
+        width: "100%",
+        padding: "10px",
+        background: pending ? "var(--surface-2)" : "var(--accent)",
+        color: pending ? "var(--text-muted)" : "var(--accent-fg)",
+        border: pending ? "1px solid var(--border)" : "none",
+        borderRadius: "8px",
+        fontWeight: 600,
+        fontSize: "14px",
+        cursor: pending ? "not-allowed" : "pointer",
+        transition: "all 0.15s ease",
+        marginTop: "4px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "8px",
+      }}
+      onMouseEnter={(e) => {
+        if (!pending) {
+          (e.currentTarget as HTMLButtonElement).style.opacity = "0.85";
+          (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)";
+        }
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLButtonElement).style.opacity = "1";
+        (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
+      }}
+      onMouseDown={(e) => {
+        if (!pending) {
+          (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0) scale(0.98)";
+        }
+      }}
+      onMouseUp={(e) => {
+        if (!pending) {
+          (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px) scale(1)";
+        }
+      }}
+    >
+      {pending ? (
+        <>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{ animation: "spin 0.8s linear infinite" }}
+          >
+            <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+          </svg>
+          Signing in…
+        </>
+      ) : (
+        "Sign In"
+      )}
+    </button>
+  );
+}
+
+export default function LoginPage() {
+  const [state, formAction] = useActionState(login, null);
+
   return (
     <div
       style={{
@@ -18,6 +88,13 @@ export default async function LoginPage({
         color: "var(--text-primary)",
       }}
     >
+      <style>{`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
+
       {/* Nav */}
       <nav
         style={{
@@ -78,7 +155,7 @@ export default async function LoginPage({
             </p>
           </div>
 
-          <form action={login} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          <form action={formAction} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
               <label
                 htmlFor="email"
@@ -118,7 +195,7 @@ export default async function LoginPage({
               />
             </div>
 
-            {params?.message && (
+            {state?.message && (
               <div
                 style={{
                   padding: "12px 14px",
@@ -127,30 +204,19 @@ export default async function LoginPage({
                   borderRadius: "8px",
                   fontSize: "13px",
                   color: "var(--danger)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
                 }}
               >
-                {params.message}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                  <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                {state.message}
               </div>
             )}
 
-            <button
-              type="submit"
-              style={{
-                width: "100%",
-                padding: "10px",
-                background: "var(--accent)",
-                color: "var(--accent-fg)",
-                border: "none",
-                borderRadius: "8px",
-                fontWeight: 500,
-                fontSize: "14px",
-                cursor: "pointer",
-                transition: "opacity 0.15s",
-                marginTop: "4px",
-              }}
-            >
-              Sign In
-            </button>
+            <SubmitButton />
           </form>
 
           <p
@@ -161,7 +227,7 @@ export default async function LoginPage({
               textAlign: "center",
             }}
           >
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link
               href="/register"
               style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 500 }}
