@@ -44,7 +44,7 @@ export default async function ForgotPasswordPage({
               color: "var(--text-primary)",
             }}
           >
-            NOTAM Assessment
+            NOTAM Precision Assessment Tool (NPAT)
           </span>
         </Link>
       </nav>

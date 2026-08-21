@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NOTAM Assessment Tool",
+  title: "NOTAM Precision Assessment Tool (NPAT)",
   description: "Test and improve your NOTAM decoding skills with structured assessments.",
 };
 

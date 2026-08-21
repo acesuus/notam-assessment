@@ -122,7 +122,7 @@ export default function RegisterPage() {
               color: "var(--text-primary)",
             }}
           >
-            NOTAM Assessment
+            NOTAM Precision Assessment Tool (NPAT)
           </span>
         </Link>
       </nav>

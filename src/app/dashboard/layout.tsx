@@ -50,7 +50,7 @@ export default async function DashboardLayout({
         >
       
           <span style={{ fontSize: "13px", fontWeight: 600, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>
-            NOTAM
+            NOTAM Precision Assessment Tool (NPAT)
           </span>
         </Link>
 

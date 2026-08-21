@@ -139,7 +139,7 @@ export default function AssessmentPage() {
                   flex: 1,
                 }}
               >
-                NOTAM Assessment
+                NOTAM Precision Assessment Tool (NPAT)
               </h1>
               <ThemeToggle />
             </div>
@@ -383,7 +383,7 @@ export default function AssessmentPage() {
           <span style={{ fontSize: "13px", color: "var(--text-muted)" }}>
             {answeredCount < questions.length
               ? `${questions.length - answeredCount} question${questions.length - answeredCount !== 1 ? "s" : ""} remaining.`
-              : "All questions locked — ready to complete the assessment."}
+              : "All questions answered"}
           </span>
           <button
             type="submit"

@@ -21,13 +21,12 @@ export type ScoringResult = {
  */
 function normalizeText(text: string): string[] {
   if (!text) return [];
-  // Remove punctuation and split into words
+  // Remove punctuation and split into words by any whitespace
   return text
     .toLowerCase()
     .replace(/[.,/#!$%^&*;:{}=\-_`~()|]/g, " ")
-    .replace(/\s{2,}/g, " ")
     .trim()
-    .split(" ")
+    .split(/\s+/)
     .filter((word) => word.length > 0);
 }
 
